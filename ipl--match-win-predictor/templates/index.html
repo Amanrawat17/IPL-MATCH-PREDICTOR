@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPL Win Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label, input, select {
+            margin: 5px 0;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>IPL Win Predictor</h1>
+        <form action="{{ url_for('predict') }}" method="post">
+            <label for="batting_team">Select the batting team:</label>
+            <select name="batting_team" id="batting_team">
+                {% for team in teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="bowling_team">Select the bowling team:</label>
+            <select name="bowling_team" id="bowling_team">
+                {% for team in teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="selected_city">Select host city:</label>
+            <select name="selected_city" id="selected_city">
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select><br>
+
+            <label for="target">Target:</label>
+            <input type="number" name="target" id="target"><br>
+
+            <label for="score">Score:</label>
+            <input type="number" name="score" id="score"><br>
+
+            <label for="overs">Overs completed:</label>
+            <input type="number" name="overs" id="overs"><br>
+
+            <label for="wickets">Wickets out:</label>
+            <input type="number" name="wickets" id="wickets"><br>
+
+            <input type="submit" value="Predict Probability">
+        </form>
+    </div>
+</body>
+</html>
